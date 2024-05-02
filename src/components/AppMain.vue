@@ -9,14 +9,29 @@
 </script>
 
 <template>
-  <main></main>
+  <main>
+    <div class="container">
+      <div> - - > Content goes here <--</div>
+    </div>
+  </main>
   
 </template>
 
 <style lang='scss'>
+  @use "../style/partials/mixin" as * ;
+  @use "../style/partials/variables" as * ;
+
   main {
     background-color: black;
     // debug
-    min-height: 200px
+    @include flex(row, center, center);
+    min-height: 200px;
+
+    .container {
+
+      div {
+        color: white;
+      }
+    }
   }
 </style>
