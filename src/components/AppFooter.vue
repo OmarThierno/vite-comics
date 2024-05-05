@@ -1,9 +1,15 @@
 <script>
+import { dateImgFooter } from '../assets/data/dateUse';
 export default {
   data() {
     return {
-
+      images: dateImgFooter,
     }
+  },
+  methods: {
+    getImgPath(img) {
+      return new URL(`../assets/img/${img}`, import.meta.url).href;
+    },
   }
 }
 </script>
@@ -12,27 +18,12 @@ export default {
   <footer>
     <section class="icon-section">
       <div class="container">
-        <div class="icon">
-          <img src="../assets/img/buy-comics-digital-comics.png" alt="">
-          <span>DIGITAL COMICS</span>
-        </div>
-        <div class="icon">
-          <img src="../assets/img/buy-comics-merchandise.png" alt="">
-          <span>DC ERCHANDISE</span>
-        </div>
-        <div class="icon">
-          <img src="../assets/img/buy-comics-subscriptions.png" alt="">
-          <span>SUBCRIVEPTION</span>
-        </div>
-        <div class="icon">
-          <img class="position-icon" src="../assets/img/buy-comics-shop-locator.png" alt="">
-          <span>COMIC SHOP LOCATOR</span>
-        </div>
-        <div class="icon">
-          <img src="../assets/img/buy-dc-power-visa.svg" alt="">
-          <span>DC POWER VISA</span>
-
-        </div>
+        <ul v-for="img in images" class="icon">
+          <li>
+            <img :src="getImgPath(img.pathRel)" :alt="img.title">
+            <span>{{ img.title }}</span>
+          </li>
+        </ul>
       </div>
     </section>
     <section class="main-footer">
@@ -42,45 +33,46 @@ export default {
             <h4>DC COMICS</h4>
             <ul>
               <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
+              <li><a href=""></a>Comics</li>
+              <li><a href=""></a>Movies</li>
+              <li><a href=""></a>Tv</li>
+              <li><a href=""></a>Games</li>
+              <li><a href=""></a>Video</li>
+              <li><a href=""></a>New</li>
             </ul>
 
             <h4>SHOP</h4>
             <ul>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
+              <li><a href=""></a>Shop Dc</li>
+              <li><a href=""></a>Shop Dc Collectibles</li>
             </ul>
           </div>
 
           <div>
             <h4>DC</h4>
             <ul>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
+              <li><a href=""></a>Terms Of Use</li>
+              <li><a href=""></a>Privacy policy (New)</li>
+              <li><a href=""></a>Add Chioce</li>
+              <li><a href=""></a>Advertising</li>
+              <li><a href=""></a>Jobs</li>
+              <li><a href=""></a>Subscription</li>
+              <li><a href=""></a>Talent Workshop</li>
+              <li><a href=""></a>CPSC certificates</li>
+              <li><a href=""></a>Ratings</li>
+              <li><a href=""></a>Shop Help</li>
+              <li><a href=""></a>Contact Us</li>
             </ul>
           </div>
 
           <div>
             <h4>SITES</h4>
             <ul>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
-              <li><a href=""></a>Characters</li>
+              <li><a href=""></a>Dc</li>
+              <li><a href=""></a>MAD Magazine</li>
+              <li><a href=""></a>DC Kids</li>
+              <li><a href=""></a>Dc Universe</li>
+              <li><a href=""></a>DC Power Visa</li>
             </ul>
           </div>
         </div>
@@ -98,12 +90,12 @@ export default {
           <ul>
             <li>
               <a href="">
-                <img src="../assets/img/footer-youtube.png" alt="">
+                <img src="../assets/img/footer-facebook.png" alt="">
               </a>
             </li>
             <li>
               <a href="">
-                <img src="../assets/img/footer-youtube.png" alt="">
+                <img src="../assets/img/footer-twitter.png" alt="">
               </a>
             </li>
             <li>
@@ -143,23 +135,24 @@ footer {
       // height: 100%;
       @include flex(row, space-around, center);
 
-      .icon {
+      ul.icon {
+        list-style-type: none;
         display: flex;
         align-items: center;
         gap: 10px;
         color: white;
 
-        img {
-          width: 40px;
-          &.position-icon {
-            width: 25px;
+        li {
+          @include flex(row, space-between, center);
+          gap: 10px;
+          img {
+            width: 40px;
+          }
+  
+          span {
+            font-size: 0.6rem;
           }
         }
-
-        span {
-          font-size: 0.6rem;
-        }
-
       }
 
     }
@@ -180,6 +173,7 @@ footer {
         justify-content: space-between;
 
         h4 {
+          margin-bottom: 10px;
           font-size: 1rem;
           color: white;
         }
